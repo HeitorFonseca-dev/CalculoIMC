@@ -1,6 +1,7 @@
 const form = document.querySelector('.form');
 const resultado = document.querySelector('.resultado-correto');
 const resultadoIncorreto = document.querySelector('.resultado-incorreto');
+
 console.log(resultado);
 
 function calculaIMC(evento) {
@@ -15,8 +16,8 @@ function calculaIMC(evento) {
 
     IMC = peso / (altura ** 2);
 
-    if(isNaN(peso) || isNaN(altura) ){
-        resultadoIncorreto.innerHTML = `Valor inválido`;
+    if(isNaN(peso) || isNaN(altura) || peso.length < 1 || altura.length < 1){
+        resultadoIncorreto.innerHTML = `Altura ou peso inválido`;   
     }
     else if (IMC < 18.5) {
         resultado.innerHTML = `Seu IMC é ${IMC.toFixed(2)}(Abaixo do peso)`;
@@ -30,7 +31,6 @@ function calculaIMC(evento) {
         resultado.innerHTML = `Seu IMC é ${IMC.toFixed(2)}, (Obesidade grau 2)`;
     } else {
         resultado.innerHTML = `Seu IMC é ${IMC} (Obesidade Grau 3)`
-
     }
 
 
