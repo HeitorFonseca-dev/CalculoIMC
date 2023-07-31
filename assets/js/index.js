@@ -1,10 +1,49 @@
-const form = document.querySelector('.form');
-const resultado = document.querySelector('.resultado-correto');
-const resultadoIncorreto = document.querySelector('.resultado-incorreto');
+const form = document.querySelector('#form');
 
-console.log(resultado);
 
-function calculaIMC(evento) {
+form.addEventListener('submit', function(e){
+    e.preventDefault();
+    const inputPeso = e.target.querySelector('#peso').value;
+    const inputAltura = e.target.querySelector('#altura').value;
+
+    const peso = Number(inputPeso);
+    const altura = Number(inputAltura);
+
+    if (!peso){
+        setResultado('Peso inválido', false);
+        return;
+    }
+    if(!altura){
+        setResultado('Altura inválida', false);
+        return;
+    }
+   
+   const imc = getImc(peso,altura); 
+    
+   setResultado(imc);
+});
+
+function getImc(peso,altura){
+    return (peso / altura ** 2).toFixed(2);
+}
+
+function criaParagrafo(){
+    const p = document.createElement('p');
+    return p;
+}
+
+function setResultado(msg, isValid){
+    const resultado = document.querySelector('#resultado')
+    resultado.innerHTML = '';
+
+    const p = criaParagrafo();
+    p.innerHTML = msg;
+    resultado.append(p);
+
+}
+
+
+/*function calculaIMC(evento) {
 
     resultado.innerHTML = "";
     resultadoIncorreto.innerHTML = "";
@@ -22,13 +61,13 @@ function calculaIMC(evento) {
     else if (IMC < 18.5) {
         resultado.innerHTML = `Seu IMC é ${IMC.toFixed(2)}(Abaixo do peso)`;
     } else if (IMC > 18.5 && IMC <= 24.9) {
-        resultado.innerHTML = `Seu IMC é ${IMC.toFixed(2)}, (Peso normal)`;
+        resultado.innerHTML = `Seu IMC é ${IMC.toFixed(2)} (Peso normal)`;
     } else if (IMC >= 25 && IMC <= 29.9) {
-        resultado.innerHTML = `Seu IMC é ${IMC.toFixed(2)}, (Sobrepeso)`;
+        resultado.innerHTML = `Seu IMC é ${IMC.toFixed(2)} (Sobrepeso)`;
     } else if (IMC >= 30 && IMC <= 34.9) {
-        resultado.innerHTML = `Seu IMC é ${IMC.toFixed(2)}, (Obesidade grau 1)`;
+        resultado.innerHTML = `Seu IMC é ${IMC.toFixed(2)} (Obesidade grau 1)`;
     } else if (IMC >= 35 && IMC <= 39.9) {
-        resultado.innerHTML = `Seu IMC é ${IMC.toFixed(2)}, (Obesidade grau 2)`;
+        resultado.innerHTML = `Seu IMC é ${IMC.toFixed(2)} (Obesidade grau 2)`;
     } else {
         resultado.innerHTML = `Seu IMC é ${IMC} (Obesidade Grau 3)`
     }
@@ -36,4 +75,4 @@ function calculaIMC(evento) {
 
 }
 
-form.addEventListener('submit', calculaIMC);
+form.addEventListener('submit', calculaIMC);*/

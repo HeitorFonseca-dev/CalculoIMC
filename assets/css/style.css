@@ -56,15 +56,8 @@ form button:hover{
     background: var(--primary-color-darker);
 }
 
-.resultado-correto{
-    display: block;
-    width: 100%;  
-    background: rgb(13, 144, 231);
-    text-align: center;
-}
-
-.resultado-incorreto{
-    background: red;
+#resultado{
+    background: rgb(46, 196, 41);
     text-align: center;
 }
 table{
